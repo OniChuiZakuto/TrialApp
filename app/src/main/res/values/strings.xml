@@ -1,3 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">TrialApp</string>
+    <string name="app_name">BERT ResQ Me!</string>
+    <string name="app_title">BATANG EMPOWERED RESILIENCE TEAM</string>
+    <string name="start_service">START</string>
+    <string name="stop_service">STOP</string>
+    <string name="button1">G2</string>
+    <string name="button2">G2</string>
+    <string name="button3">B3L2D3</string>
+    <string name="button4">B3L2D4</string>
+    <string name="button5">G2</string>
+    <string name="button6">G2</string>
+    <string name="pane_button1">Pane Button 1</string>
+    <string name="pane_button2">Pane Button 2</string>
+    <string name="pane_button3">Pane Button 3</string>
+    <string name="pane_button4">Pane Button 4</string>
+    <string name="pane_button5">Pane Button 5</string>
+    <string name="pane_button6">Pane Button 6</string>
+    <string name="button7">B3L1D1</string>
+    <string name="button8">B3L1D2</string>
+    <string name="button9">B2L2D4</string>
+    <string name="button10">B2L1D2</string>
+    <string name="button11">O2</string>
+    <string name="button12">O2</string>
+    <string name="button13">B2L2D3</string>
+    <string name="button14">B2L1D1</string>
+    <string name="button15">O1</string>
+    <string name="button16">O1</string>
+    <string name="button17">G1</string>
+    <string name="button18">G1</string>
+    <string name="button19">B1L1D1</string>
+    <string name="button20">B1L1D2</string>
+    <string name="button21">G1</string>
+    <string name="button22">G1</string>
+    <string name="button23">B1L2D3</string>
+    <string name="button24">B1L2D4</string>
+    <string name="image_description">Description of the human body image</string>
+    <string name="inflicted_area_question">Where is the inflicted area?</string>
+    <string name="help_message">Help is on the way!</string>
+    <string name="welcome_message">Welcome, %1$s</string>
+    <string name="button_head">Head</string>
+    <string name="button_torso">Torso</string>
+    <string name="button_right_arm">Right Arm</string>
+    <string name="button_left_arm">Left Arm</string>
+    <string name="button_legs">Legs</string>
 </resources>

@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <View
+        android:id="@+id/topHeader"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:background="@drawable/top_gradient"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/appTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Help is on the Way!"
+        android:textSize="28sp"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toTopOf="@id/topHeader"
+        app:layout_constraintBottom_toBottomOf="@id/topHeader"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <View
+        android:id="@+id/centerRectangle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/rounded_rectangle_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topHeader" />
+
+    <TextView
+        android:id="@+id/questionText"
+        android:layout_width="351dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/white"
+        android:padding="16dp"
+        android:text="Are you the victim or handler?"
+        android:textAlignment="center"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="@id/centerRectangle"
+        app:layout_constraintStart_toStartOf="@id/centerRectangle"
+        app:layout_constraintTop_toTopOf="@id/centerRectangle" />
+
+    <Button
+        android:id="@+id/victimButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:backgroundTint="#E76F51"
+        android:text="Victim"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@id/questionText"
+        app:layout_constraintStart_toStartOf="@id/centerRectangle"
+        app:layout_constraintEnd_toEndOf="@id/centerRectangle" />
+
+    <Button
+        android:id="@+id/handlerButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:backgroundTint="#E76F51"
+        android:text="Handler with Victim's Phone"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toBottomOf="@id/victimButton"
+        app:layout_constraintStart_toStartOf="@id/centerRectangle"
+        app:layout_constraintEnd_toEndOf="@id/centerRectangle" />
+
+    <TableLayout
+        android:id="@+id/studentHealthRecordTable"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="296dp"
+        app:layout_constraintTop_toBottomOf="@id/topHeader"
+        app:layout_constraintStart_toStartOf="@id/centerRectangle"
+        app:layout_constraintEnd_toEndOf="@id/centerRectangle"
+        android:padding="16dp"
+        android:background="@android:color/white">
+
+        <!-- Row for Given Name -->
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Given Name:" />
+            <TextView
+                android:id="@+id/givenNameTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" " />
+        </TableRow>
+
+        <!-- Row for Gender -->
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gender:" />
+            <TextView
+                android:id="@+id/genderTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" " />
+        </TableRow>
+
+        <!-- Row for Date of Birth -->
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date of Birth (D/M/Y):" />
+            <TextView
+                android:id="@+id/dateOfBirthTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" " />
+        </TableRow>
+
+        <!-- Row for Blood Type -->
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Blood Type:" />
+            <TextView
+                android:id="@+id/bloodTypeTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" " />
+        </TableRow>
+
+        <!-- Row for Grade and Section -->
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Grade and Section:" />
+            <TextView
+                android:id="@+id/gradeAndSectionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" " />
+        </TableRow>
+
+        <!-- Row for Hereditary or Family History -->
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hereditary or Family History:" />
+            <TextView
+                android:id="@+id/hereditaryFamilyHistoryTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" " />
+        </TableRow>
+
+        <!-- Row for Allergies -->
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Allergies:" />
+            <TextView
+                android:id="@+id/allergiesTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" " />
+        </TableRow>
+
+        <!-- Row for Chronic Illnesses -->
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chronic Illnesses:" />
+            <TextView
+                android:id="@+id/chronicIllnessesTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" " />
+        </TableRow>
+
+        <!-- Row for Other Diagnosed Conditions -->
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Other Diagnosed Conditions:" />
+            <TextView
+                android:id="@+id/otherDiagnosedConditionsTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" " />
+        </TableRow>
+
+        <!-- Row for Current Prescription Drugs -->
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Current Prescription:" />
+            <TextView
+                android:id="@+id/currentPrescriptionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" " />
+        </TableRow>
+
+        <!-- Row for Recent Treatments -->
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recent Treatments:" />
+            <TextView
+                android:id="@+id/recentTreatmentsTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" " />
+        </TableRow>
+
+        <!-- Row for Advisor -->
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Advisor:" />
+            <TextView
+                android:id="@+id/advisorTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=" " />
+        </TableRow>
+
+    </TableLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

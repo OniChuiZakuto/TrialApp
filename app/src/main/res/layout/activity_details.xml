@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"> <!-- Change to white -->
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="700dp"
+            android:layout_height="639dp"
+            android:layout_gravity="center"
+            android:src="@drawable/humanbody"
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/image_description" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/inflicted_area_question"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:layout_gravity="top|center_horizontal"
+            android:layout_marginTop="0dp" />
+
+        <Button
+            android:id="@+id/button1"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:layout_gravity="top|center_horizontal"
+            android:layout_marginTop="16dp"
+            android:background="@android:color/transparent"
+            android:textColor="@android:color/transparent" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="100dp"
+            android:layout_height="260dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="140dp"
+            android:background="@android:color/transparent"
+            android:textColor="@android:color/transparent" />
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="150dp"
+            android:layout_height="290dp"
+            android:layout_gravity="start|center_vertical"
+            android:layout_marginTop="-80dp"
+            android:background="@android:color/transparent"
+            android:textColor="@android:color/transparent" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="150dp"
+            android:layout_height="290dp"
+            android:layout_gravity="end|center_vertical"
+            android:layout_marginTop="-80dp"
+            android:background="@android:color/transparent"
+            android:textColor="@android:color/transparent" />
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="160dp"
+            android:layout_height="330dp"
+            android:layout_gravity="bottom|center_horizontal"
+            android:layout_marginTop="220dp"
+            android:background="@android:color/transparent"
+            android:textColor="@android:color/transparent" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/pane_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+</RelativeLayout>

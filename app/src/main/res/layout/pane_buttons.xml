@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:rowCount="3"
+        android:columnCount="2"
+        android:background="@android:color/white">
+
+        <Button
+            android:id="@+id/pane_button1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="fill"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="@string/pane_button1"
+            android:background="@android:color/transparent"
+            android:textColor="@android:color/transparent" />
+
+        <Button
+            android:id="@+id/pane_button2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="fill"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="@string/pane_button2"
+            android:background="@android:color/transparent"
+            android:textColor="@android:color/transparent" />
+
+        <Button
+            android:id="@+id/pane_button3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="fill"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="@string/pane_button3"
+            android:background="@android:color/transparent"
+            android:textColor="@android:color/transparent" />
+
+        <Button
+            android:id="@+id/pane_button4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="fill"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="@string/pane_button4"
+            android:background="@android:color/transparent"
+            android:textColor="@android:color/transparent" />
+
+        <Button
+            android:id="@+id/pane_button5"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="fill"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="@string/pane_button5"
+            android:background="@android:color/transparent"
+            android:textColor="@android:color/transparent" />
+
+        <Button
+            android:id="@+id/pane_button6"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_gravity="fill"
+            android:layout_rowWeight="1"
+            android:layout_columnWeight="1"
+            android:text="@string/pane_button6"
+            android:background="@android:color/transparent"
+            android:textColor="@android:color/transparent" />
+
+    </GridLayout>
+
+    <ImageView
+        android:id="@+id/imageOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:src="@drawable/iconpad"
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/image_description" />
+
+</FrameLayout>

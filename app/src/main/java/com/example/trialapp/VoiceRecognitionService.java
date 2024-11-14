@@ -5,136 +5,107 @@ import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Intent;
-import android.os.Build;
-import android.os.Bundle;
+import android.media.AudioFormat;
+import android.media.AudioRecord;
+import android.media.MediaRecorder;
 import android.os.IBinder;
-import android.speech.RecognitionListener;
-import android.speech.RecognizerIntent;
-import android.speech.SpeechRecognizer;
 import android.util.Log;
 import androidx.core.app.NotificationCompat;
-import java.util.ArrayList;
+import android.content.pm.PackageManager;
+import android.Manifest;
 
 public class VoiceRecognitionService extends Service {
-    private SpeechRecognizer speechRecognizer;
-    private Intent recognizerIntent;
+    private static final String TAG = "VoiceRecognitionService";
     private static final String CHANNEL_ID = "VoiceRecognitionChannel";
+    private static final int SAMPLE_RATE = 44100; // Sample rate for recording
+    private static final int BUFFER_SIZE = 4096; // Buffer size for recording
+    private static final int THRESHOLD = 1000; // Set your threshold for noise detection
+    private AudioRecord audioRecord;
+    private boolean isRecording = false;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        createNotificationChannel();
+        startForegroundService();
+        // Check for permissions before starting the noise detection
+        if (checkSelfPermission(Manifest.permission.RECORD_AUDIO) == PackageManager.PERMISSION_GRANTED) {
+            startNoiseDetection();
+        } else {
+            Log.e(TAG, "Permission for RECORD_AUDIO not granted");
+            stopSelf(); // Stop the service if permission is not granted
+        }
+    }
+
+    private void startForegroundService() {
+        Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setContentTitle("Voice Recognition")
+                .setContentText("Listening for voice commands...")
+                .setSmallIcon(android.R.drawable.ic_menu_camera) // Use a default drawable for testing
+                .build();
+        startForeground(1, notification);
+    }
+
+    private void startNoiseDetection() {
+        audioRecord = new AudioRecord(MediaRecorder.AudioSource.MIC,
+                SAMPLE_RATE, AudioFormat.CHANNEL_IN_MONO,
+                AudioFormat.ENCODING_PCM_16BIT, BUFFER_SIZE);
+
+        isRecording = true;
+        audioRecord.startRecording();
+
+        new Thread(() -> {
+            short[] buffer = new short[BUFFER_SIZE];
+            while (isRecording) {
+                int readSize = audioRecord.read(buffer, 0, buffer.length);
+                if (readSize > 0) {
+                    int amplitude = 0;
+                    for (short s : buffer) {
+                        amplitude += Math.abs(s);
+                    }
+                    amplitude /= readSize;
+
+                    if (amplitude > THRESHOLD) {
+                        // Loud noise detected
+                        Log.d(TAG, "Loud noise detected, broadcasting...");
+                        Intent launchIntent = new Intent(this, MainActivity.class);
+                        launchIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(launchIntent);  // Launch the MainActivity
+                    }
+                }
+            }
+        }).start();
+    }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        // Start the service as a foreground service with a notification
-        createNotificationChannel();
-        Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
-                .setContentTitle("Voice Recognition Service")
-                .setContentText("Listening for 'BERT'")
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
-                .build();
-
-        startForeground(1, notification);
-
-        startListening();
         return START_STICKY;
     }
 
-    private void startListening() {
-        speechRecognizer = SpeechRecognizer.createSpeechRecognizer(this);
-        recognizerIntent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
-        recognizerIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
-                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
-        recognizerIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE,
-                this.getPackageName());
-
-        speechRecognizer.setRecognitionListener(new RecognitionListener() {
-            @Override
-            public void onReadyForSpeech(Bundle params) {
-                Log.d("VoiceRecognitionService", "Ready for speech");
-            }
-
-            @Override
-            public void onBeginningOfSpeech() {
-                Log.d("VoiceRecognitionService", "Beginning of speech");
-            }
-
-            @Override
-            public void onRmsChanged(float rmsdB) {
-                // Monitor the volume changes during speech
-            }
-
-            @Override
-            public void onBufferReceived(byte[] buffer) {
-            }
-
-            @Override
-            public void onEndOfSpeech() {
-                Log.d("VoiceRecognitionService", "End of speech");
-            }
-
-            @Override
-            public void onError(int error) {
-                Log.e("VoiceRecognitionService", "Error occurred: " + error);
-                startListening();  // Restart listening on error
-            }
-
-            @Override
-            public void onResults(Bundle results) {
-                ArrayList<String> matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION);
-                if (matches != null) {
-                    for (String result : matches) {
-                        Log.d("VoiceRecognitionService", "Heard: " + result);
-                        if (result.equalsIgnoreCase("BERT")) {
-                            activateApp();
-                        }
-                    }
-                }
-                startListening();  // Restart listening after results
-            }
-
-            @Override
-            public void onPartialResults(Bundle partialResults) {
-            }
-
-            @Override
-            public void onEvent(int eventType, Bundle params) {
-            }
-        });
-
-        speechRecognizer.startListening(recognizerIntent);
-    }
-
-    private void activateApp() {
-        Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.example.yourapp");
-        if (launchIntent != null) {
-            launchIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(launchIntent);
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        isRecording = false;
+        if (audioRecord != null) {
+            audioRecord.stop();
+            audioRecord.release();
         }
     }
 
     @Override
     public IBinder onBind(Intent intent) {
-        return null;
+        return null; // Not binding to any component
     }
 
-    @Override
-    public void onDestroy() {
-        if (speechRecognizer != null) {
-            speechRecognizer.stopListening();
-            speechRecognizer.destroy();
-        }
-        super.onDestroy();
-    }
-
-    // Create the notification channel required for the foreground service
     private void createNotificationChannel() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel serviceChannel = new NotificationChannel(
-                    CHANNEL_ID,
-                    "Voice Recognition Service Channel",
-                    NotificationManager.IMPORTANCE_DEFAULT
-            );
-            NotificationManager manager = getSystemService(NotificationManager.class);
-            if (manager != null) {
-                manager.createNotificationChannel(serviceChannel);
-            }
+        NotificationChannel serviceChannel = new NotificationChannel(
+                CHANNEL_ID,
+                "Voice Recognition Service Channel",
+                NotificationManager.IMPORTANCE_DEFAULT
+        );
+        NotificationManager manager = getSystemService(NotificationManager.class);
+        if (manager != null) {
+            manager.createNotificationChannel(serviceChannel);
         }
     }
 }

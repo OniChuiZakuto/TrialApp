@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <View
+        android:id="@+id/topHeader"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:background="@drawable/top_gradient"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/appTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BERT ResQ Me!"
+        android:textSize="28sp"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toTopOf="@id/topHeader"
+        app:layout_constraintBottom_toBottomOf="@id/topHeader"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <View
+        android:id="@+id/centerRectangle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/rounded_rectangle_background"
+        android:layout_margin="16dp"
+        app:layout_constraintTop_toBottomOf="@id/topHeader"
+        app:layout_constraintBottom_toTopOf="@id/footer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <Button
+        android:id="@+id/backButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:backgroundTint="#E76F51"
+        android:text="Back"
+        android:textColor="@android:color/white"
+        app:layout_constraintTop_toTopOf="@id/centerRectangle"
+        app:layout_constraintStart_toStartOf="@id/centerRectangle"
+        app:layout_constraintEnd_toEndOf="@id/centerRectangle"
+        android:onClick="onBackButtonPressed" />
+
+    <TableLayout
+        android:id="@+id/studentHealthRecordTable"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@id/backButton"
+        app:layout_constraintStart_toStartOf="@id/centerRectangle"
+        app:layout_constraintEnd_toEndOf="@id/centerRectangle"
+        android:padding="16dp"
+        android:background="@android:color/white">
+
+        <!-- Row for Given Name -->
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Given Name:" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Current Non-prescription:" />
+        </TableRow>
+        <TableRow>
+            <EditText
+                android:id="@+id/givenNameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName" />
+            <EditText
+                android:id="@+id/currentNonPrescriptionEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </TableRow>
+
+        <!-- Row for Gender -->
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gender:" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Chronic Illnesses:" />
+        </TableRow>
+        <TableRow>
+            <EditText
+                android:id="@+id/genderEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+            <EditText
+                android:id="@+id/chronicIllnessesEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </TableRow>
+
+        <!-- Row for Date of Birth -->
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Date of Birth (D/M/Y):" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Other Diagnosed Conditions:" />
+        </TableRow>
+        <TableRow>
+            <EditText
+                android:id="@+id/dateOfBirthEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date" />
+            <EditText
+                android:id="@+id/otherDiagnosedConditionsEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </TableRow>
+
+        <!-- Row for Blood Type -->
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Blood Type:" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recent Treatments:" />
+        </TableRow>
+        <TableRow>
+            <EditText
+                android:id="@+id/bloodTypeEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+            <EditText
+                android:id="@+id/recentTreatmentsEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+        </TableRow>
+
+        <!-- Row for Grade and Section -->
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Grade and Section:" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Advisor:"/>
+        </TableRow>
+        <TableRow>
+            <EditText
+                android:id="@+id/gradeAndSectionEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text" />
+            <EditText
+                android:id="@+id/advisorEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"/>
+        </TableRow>
+
+        <!-- Row for Hereditary or Family History -->
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hereditary or Family History:" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Emergency Contact #1"/>
+        </TableRow>
+        <TableRow>
+            <EditText
+                android:id="@+id/hereditaryFamilyHistoryEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine" />
+            <EditText
+                android:id="@+id/emergencyContact1EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number|phone"/>
+        </TableRow>
+
+        <!-- Row for Allergies -->
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Allergies:" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Emergency Contact #2"/>
+        </TableRow>
+        <TableRow>
+            <EditText
+                android:id="@+id/allergiesEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine" />
+            <EditText
+                android:id="@+id/emergencyContact2EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number|phone" />
+        </TableRow>
+
+        <!-- Row for Current Prescription Drugs -->
+        <TableRow>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Current Prescription:" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Emergency Contact #3"/>
+        </TableRow>
+        <TableRow>
+            <EditText
+                android:id="@+id/currentPrescriptionEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine" />
+            <EditText
+                android:id="@+id/emergencyContact3EditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number|phone" />
+        </TableRow>
+    </TableLayout>
+
+    <View
+        android:id="@+id/footer"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:background="@drawable/footer_gradient"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
