@@ -1,6 +1,6 @@
-Short Intro:
+#**Short Intro:**
 
-The file contains an application called "BERT ResQ Me!
+The file contains an application called `"BERT ResQ Me!`
 This is an application developed in research in compliance with Balanga City National Science High School
 and the research team; Initializing New Human Emergency Application Technology
 The Vision of this application is to have an easy emegency button for students in their devices to quickly and effectively notify emergency personel
